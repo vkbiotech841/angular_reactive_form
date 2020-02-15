@@ -1,0 +1,172 @@
+<div class="registration-form" class="card">
+
+    <img src="assets/logo.png" alt="" class="logo rounded">
+    <h4 class="card-header" style="text-align: center;">Registration Form</h4>
+
+    <div class="card-body">
+
+
+        <!-- Displayed FormGroup -->
+        <!-- Here,we are using formGroup property binding with registrationForm -->
+        <!-- Here, we are using ngSubmit as event binding and calling onSubmit method -->
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input formControlName="firstName" id="firstName" type=" text" class="form-control"
+                    placeholder="First Name">
+
+
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                    <div *ngIf="firstName.errors.required">
+                        First Name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input formControlName="lastName" id="lastName" type=" text" class="form-control"
+                    placeholder="Last Name">
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                    <div *ngIf="lastName.errors.required">
+                        Last Name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input formControlName="email" id="email" type=" text" class="form-control" placeholder="xxx@email.com">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        Please provide a valid email.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input formControlName="password" id="password" type="password" class="form-control"
+                    placeholder="Password">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        Password is required.
+                    </div>
+                    <div *ngIf="password.errors.minlength">
+                        Password must be at least 8 letters.
+                    </div>
+                    <div *ngIf="password.errors.pattern">
+                        Password must have at least 1 special character, 1 Upper case, 1 lower case and 1 number.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number</label>
+                <input formControlName="mobileNumber" id="mobileNumber" type="number" class="form-control"
+                    placeholder="0123456789">
+            </div>
+
+            <div class="form-group">
+                <label for="streetAddressOne">Street Address 1</label>
+                <input formControlName="streetAddressOne" id="streetAddressOne" type=" text" class="form-control"
+                    placeholder="Street 1">
+                <div *ngIf="streetAddressOne.invalid && (streetAddressOne.dirty || streetAddressOne.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="streetAddressOne.errors.required">
+                        Street Address 01 is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="streetAddressTwo">Street Address 2</label>
+                <input formControlName="streetAddressTwo" id="streetAddressTwo" type=" text" class="form-control"
+                    placeholder="Street 2">
+                <div *ngIf="streetAddressTwo.invalid && (streetAddressTwo.dirty || streetAddressTwo.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="streetAddressTwo.errors.required">
+                        Street Address 02 is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input formControlName="city" id="city" type=" text" class="form-control" placeholder="Bangalore">
+                <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+                    <div *ngIf="city.errors.required">
+                        City is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State</label>
+                <input formControlName="state" id="state" type=" text" class="form-control" placeholder="Karnataka">
+                <div *ngIf="state.invalid && (state.dirty || state.touched)" class="alert alert-danger">
+                    <div *ngIf="state.errors.required">
+                        State is required.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input formControlName="country" id="country" type=" text" class="form-control" placeholder="India">
+                <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
+                    <div *ngIf="country.errors.required">
+                        Country is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="zipCode">Zip Code</label>
+                <input formControlName="zipCode" id="zipCode" type=" text" class="form-control" placeholder="123456">
+                <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)" class="alert alert-danger">
+                    <div *ngIf="zipCode.errors.required">
+                        ZipCode is required.
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+    <button (click)="showUsers()" class="btn btn-light" class="card-footer">Show Users</button>
+</div>
+
+
+<!-- submit button should be inside the form tag.Otherwise submit button witll not work. -->
+
+<!-- Registration form UI ends here -->
+
+
+
+<!-- Displaying Modal starts here-->
+<!-- Here, #userModal is kind of a id or reference variable that is being used by ts file to open the modal usin @ViewChild-->
+<ng-template #userModal let-modal>
+    <!--Modal header-->
+    <div class=" modal-header">
+        <h4 class="modal-title">User Information</h4>
+        <!-- Here, we are using click event binding -->
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <!-- Modal body -->
+    <div class="modal-body">
+
+        <!--  Displaying users using child component by passing users array-->
+        <app-user-display></app-user-display>
+
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <!-- Here, we are event binding for closing the modal -->
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

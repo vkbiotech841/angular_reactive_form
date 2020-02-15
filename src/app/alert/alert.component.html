@@ -1,0 +1,6 @@
+<p *ngFor="let alert of alertService.alerts" class="app-alert">
+
+    <ngb-alert [type]="alert.type" (close)="alertService.remove(alert)">
+        {{alert.message}}
+    </ngb-alert>
+</p>
